@@ -1,0 +1,28 @@
+{
+  "name": "bamazon",
+  "version": "1.0.0",
+  "description": "Bamazon Store",
+  "main": "bamazonCustomer.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/waqar-habib/bamazon.git"
+  },
+  "keywords": [
+    "bamazon",
+    "mySQL",
+    "database"
+  ],
+  "author": "W.H.",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/waqar-habib/bamazon/issues"
+  },
+  "homepage": "https://github.com/waqar-habib/bamazon#readme",
+  "dependencies": {
+    "inquirer": "^6.3.1",
+    "mysql": "^2.17.1"
+  }
+}
