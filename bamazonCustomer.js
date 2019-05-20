@@ -36,4 +36,46 @@ function purchaseItem() {
                 }
                 return itemsArray;
             }
-        }, 
+        }, {
+            // How many?
+            name: "quantity",
+            type: "input",
+            message: "How many would you like to purchase?",
+            validate: function(value) {
+                if (isNaN(value) == false) {
+                    return true;
+                } else {
+                    return false;
+                }
+            }
+        }]).then(function(answer) {
+
+            for (var i = 0; i < res.length; i++) {
+                if (res[i].product_name == answer.choice) {
+                    var chosenItem = res[i];
+                }
+            }
+                             
+            // refresh stock numbers
+            var refreshStock = parseInt(chosenItem.stock_quantity) - parseInt(answer.quantity);
+
+            // choose another item if there isn't enough
+            if (chosenItem.stock_quantity < parseInt(answer.quantity)) {
+                console.log("Sorry, We don't have that many in stock today :/");
+                buyAgain();
+            }
+            // update database
+            else {
+                connection.query("UPDATE products SET ? WHERE ?", [{stock_quantity: refreshStock}, {id: chosenItem.id}], function(err, res) {
+                    console.log("Purchase successful!");
+
+                    var Total = (parseInt(answer.quantity)*chosenItem.price).toFixed(2);
+                    console.log("Your total is $" + Total);
+
+                    buyAgain();
+                });
+            }
+
+        });                          
+    });     
+}
