@@ -79,3 +79,21 @@ function purchaseItem() {
         });                          
     });     
 }
+
+function buyAgain() {
+    inquirer.prompt({
+        // purchase more?
+        name: "buyAgain",
+        type: "list",
+        choices: ["Yes", "No"],
+        message: "Would you like to purchase another item?"
+    }).then(function(answer) {
+        if (answer.buyAgain == "Yes") {
+            purchaseItem();
+        }
+        else {
+            console.log("Thank you for shoppping at Bamazon Pantry! Have a Bamazing day!")
+            connection.end();
+        }
+    });
+}
